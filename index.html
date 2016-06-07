@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Demo Bancalé</title>
+    <meta name=viewport content="width=device-width initial-scale=1">
+    <link href="http://cartodb.com/favicon.ico" rel="shortcut icon" />
+    <link rel="stylesheet" href="./themes/css/deep-insights.css" />
+    <script src="./scripts/deep-insights.uncompressed.js"></script>
+    <style type="text/css">
+        html,
+        body {
+            position: relative;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="Dashboard-canvas" id="dashboard"></div>
+
+    <script>
+        window.myapp = window.myapp || {};
+
+        window.onload = function () {
+
+            var diJSON = 'https://team.cartodb.com/u/ramirocartodb/api/v3/viz/8dc853c0-2c8b-11e6-9a66-0ecfd53eb7d3/viz.json',
+                username = diJSON.match(/\/u\/(.+)\/api\/v\d\/|:\/\/(.+)\.cartodb\.com\/api/i)[1],
+                myapp = window.myapp;
+
+            myapp.sqlclient = new cartodb.SQL({ // SQL client
+                user: username,
+                protocol: "https",
+                sql_api_template: "https://{user}.cartodb.com:443"
+            });
+
+            cartodb.deepInsights.createDashboard('#dashboard', diJSON, {
+                no_cdn: false
+            }, function (err, dashboard) {
+                myapp.map = dashboard.getMap();
+                myapp.Lmap = myapp.map.getNativeMap(); // Leaflet map object
+                myapp.layers = myapp.map.getLayers(); // CartoDB layers
+                // if the layer has an analysis node, its SQL is not exposed in the API
+                myapp.layers.map(function (a) {
+                    var tmp;
+                    if (a.attributes.sql == void 0) {
+                        tmp = dashboard._dashboard.vis._analysisCollection.models.filter(function (b) {
+                            return b.id == a.attributes.source;
+                        })[0];
+                        if (tmp != void 0) a.attributes.sql = tmp.attributes.query;
+                    }
+                    return a;
+                });
+                myapp.widgetsdata = dashboard.getWidgets().map(function (a) { // Array of widgets’ data models
+                    return a.dataviewModel
+                });
+                myapp.widgets = dashboard.getWidgets(); // Array of widgets views
+
+                myapp.wcontainer = cdb.$('#' + vis.$el.context.id + ' .CDB-Widget-canvasInner').get(0); // Container
+
+                /*
+
+                whatever
+
+                */
+
+            });
+        }
+    </script>
+</body>
+
+</html>
