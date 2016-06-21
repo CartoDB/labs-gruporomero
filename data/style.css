@@ -1,0 +1,49 @@
+/* Parcelas Style */
+
+/** Jenks scale */
+
+@color0: #d3f2a3;
+@color1: #97e196;
+@color2: #6cc08b;
+@color3: #4c9b82;
+@color4: #217a79;
+@color5: #105965;
+@color6: #074050;
+
+#parcelas_prod_mano{
+polygon-opacity: 0.9;
+polygon-fill: @color0;
+line-opacity: 1;
+line-width: 0.5;
+line-color: lighten(@color0,5);
+
+	[tonelada>0]{
+		polygon-fill: @color0;
+		line-color: lighten(@color0,5);
+       }
+	[tonelada>5.45]{
+		polygon-fill: @color1;
+		line-color: lighten(@color1,5);
+       }
+	[tonelada>5.57]{
+		polygon-fill: @color2;
+		line-color: lighten(@color2,5);
+       }
+	[tonelada>11.08]{
+		polygon-fill: @color3;
+		line-color: lighten(@color3,5);
+       }
+	[tonelada>17.66]{
+		polygon-fill: @color4;
+		line-color: lighten(@color4,5);
+       }
+	[tonelada>22.21]{
+		polygon-fill: @color5;
+		line-color: lighten(@color5,5);
+       }
+	[tonelada>33.12]{
+		polygon-fill: @color6;
+		line-color: lighten(@color6,5);
+       }
+}
+}

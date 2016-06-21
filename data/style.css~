@@ -1,0 +1,100 @@
+/* zaragoza_prov_do layer style */
+
+/** Log shifted to POI scale */
+
+@color0: #d1eeea;
+@color1: #a8dbd9;
+@color2: #85c4c9;
+@color3: #68abb8;
+@color4: #4f90a6;
+@color5: #3b738f;
+@color6: #2a5674;
+
+#zaragoza_prov_do{
+polygon-opacity: 0.9;
+polygon-fill: @color0;
+line-opacity: 1;
+line-width: 0.5;
+line-color: lighten(@color0,5);
+
+	[foreign_percent>0]{
+		polygon-fill: @color0;
+		line-color: lighten(@color0,5);
+       }
+	[foreign_percent>0.6500421040324974]{
+		polygon-fill: @color1;
+		line-color: lighten(@color1,5);
+       }
+	[foreign_percent>0.7900210520162487]{
+		polygon-fill: @color2;
+		line-color: lighten(@color2,5);
+       }
+	[foreign_percent>0.93]{
+		polygon-fill: @color3;
+		line-color: lighten(@color3,5);
+       }
+	[foreign_percent>6.576606201012127]{
+		polygon-fill: @color4;
+		line-color: lighten(@color4,5);
+       }
+	[foreign_percent>14.535050654033633]{
+		polygon-fill: @color5;
+		line-color: lighten(@color5,5);
+       }
+	[foreign_percent>28.14010130806726]{
+		polygon-fill: @color6;
+		line-color: lighten(@color6,5);
+       }
+}
+
+/* zaragoza_centroids layer style */
+
+/** bubble visualization */
+
+@color11: #ffdd9a;
+@color12: #ffc285;
+@color13: #ffa679;
+@color14: #fa8a76;
+@color15: #f16d7a;
+@color16: #e15383;
+
+#zaragoza_centroids{
+  marker-fill-opacity: 0.8;
+  marker-line-width: 0.7;
+  marker-line-opacity: 1;
+  marker-placement: point;
+  marker-multi-policy: largest;
+  marker-type: ellipse;
+  marker-allow-overlap: true;
+  marker-clip: false;
+}
+#zaragoza_centroids [ student_rooms <= 120] {
+   marker-width: 45.0;
+  marker-fill: @color16;
+  marker-line-color: darken(@color16,5);
+}
+#zaragoza_centroids [ student_rooms <= 100] {
+   marker-width: 40.0;
+  marker-fill: @color15;
+    marker-line-color: darken(@color15,5);
+}
+#zaragoza_centroids [ student_rooms <= 80] {
+   marker-width: 35.0;
+  marker-fill: @color14;
+    marker-line-color: darken(@color14,5);
+}
+#zaragoza_centroids [ student_rooms <= 60] {
+   marker-width: 30.0;
+  marker-fill: @color13;
+    marker-line-color: darken(@color13,5);
+}
+#zaragoza_centroids [ student_rooms <= 40] {
+   marker-width: 20.0;
+  marker-fill: @color12;
+    marker-line-color: darken(@color12,5);
+}
+#zaragoza_centroids [ student_rooms <= 20] {
+   marker-width: 10.0;
+  marker-fill: @color11;
+    marker-line-color: darken(@color11,5);
+}
