@@ -16,3 +16,4 @@ datos_palmas_mano mano,
 parcelaspde parc
 where
 prod.parcela = mano.parcela AND prod.parcela = parc.nom_parc AND mano.parcela = parc.nom_parc
+
