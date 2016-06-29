@@ -61,6 +61,24 @@
 
                 myapp.wcontainer = cdb.$('#' + vis.$el.context.id + ' .CDB-Widget-canvasInner').get(0); // Container
 
+                // add two category widgets
+                var layer = myapp.map.getLayer(1)
+
+                var id = {
+                    "type": "category",
+                    "title": "ID",
+                    "column": "objectid"
+                };
+
+                var parcela = {
+                    "type": "category",
+                    "title": "Parcela",
+                    "column": "parcela"
+                };
+
+                dashboard.createCategoryWidget(id,layer);
+                dashboard.createCategoryWidget(parcela,layer);
+
             });
         }
     </script>
